@@ -1,0 +1,28 @@
+{
+  "name": "httpraw-js",
+  "version": "1.0.0",
+  "description": "Node.js application that logs the Raw HTTP request",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickilous/httpraw-js.git"
+  },
+  "keywords": [
+    "http",
+    "raw",
+    "node",
+    "js"
+  ],
+  "author": "Mickilous",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mickilous/httpraw-js/issues"
+  },
+  "homepage": "https://github.com/mickilous/httpraw-js#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
