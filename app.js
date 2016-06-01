@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var os = require('os')
 var httpraw = require('./modules/httpraw-mod.js')
+var displayNetwork = require('./modules/networkinterfaces-mod.js')
 
 var app = express();
 var port = process.argv[2]
@@ -25,6 +26,9 @@ app.use(function (req, res, next) {
     next()
 })
 
+
 app.listen(port, function () {
-    console.log('Httpraw-js listening on port', port, '!');
+    displayNetwork(function (ifName, ip) {
+        console.log('Httpraw-js listening at', ip + ':' + port, '(' + ifName + ') !');
+    })
 });
