@@ -2,7 +2,7 @@
   "name": "httpraw-js",
   "version": "1.0.0",
   "description": "Node.js application that logs the Raw HTTP request",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mickilous/httpraw-js#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "^4.13.4"
   }
 }
