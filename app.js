@@ -27,7 +27,8 @@ app.use(function (req, res, next) {
 })
 
 app.listen(port, function () {
+    console.log('Httpraw-js listening at')
     displayNetwork(function (ifName, ip) {
-        console.log('Httpraw-js listening at', ip + ':' + port, '(' + ifName + ') !');
+        console.log('  ', ip + ':' + port, '(' + ifName + ')');
     })
 });
