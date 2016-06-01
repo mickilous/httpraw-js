@@ -3,27 +3,29 @@ var bodyParser = require('body-parser')
 
 var app = express();
 
-
 app.use(bodyParser.raw());
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     console.log('------------------')
     console.log(req.method + ' ' + req.url + ' HTTP/' + req.httpVersion)
 
     console.log('--- Header ---')
-    // console.log(req.headers)
-    for (var key in req.headers) {
-        if (req.headers.hasOwnProperty(key)) {
-            console.log(key + ": " + req.headers[key])
-        }
-    }
+    logFields(req.headers);
+
     console.log('--- Parameters ---')
+    logFields(req.query)
+
     console.log('--- Content ---')
-    console.log(req.body)
-    console.log("LOGGED")
-    res.send('LOGGED')
     next()
 })
+
+function logFields(obj) {
+    for (var key in obj) {
+        if (!obj.hasOwnProperty(key))
+            continue
+        console.log(key + ": " + obj[key])
+    }
+}
 
 
 app.listen(3000, function () {
