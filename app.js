@@ -1,3 +1,4 @@
+var os = require('os')
 var express = require('express');
 var bodyParser = require('body-parser')
 
@@ -10,32 +11,41 @@ app.use(bodyParser.raw({type: '*/*'}))
 
 app.use(function (req, res, next) {
 
-    console.log('------------------')
-    console.log(req.method + ' ' + req.url + ' HTTP/' + req.httpVersion)
+    var requestString = ''
 
-    console.log('--- Header ---')
-    logFields(req.headers);
+    function add(message) {
+        requestString += message + os.EOL
+    }
 
-    console.log('--- Parameters ---')
-    logFields(req.query)
+    add('------------------')
+    add(req.method + ' ' + req.url + ' HTTP/' + req.httpVersion)
 
-    console.log('--- Content ---')
+    add('--- Header ---')
+    add(getFields(req.headers));
+
+    add('--- Parameters ---')
+    add(getFields(req.query))
+
+    add('--- Content ---')
     if (req.body.length > 0)
-        console.log(req.body.toString())
+        add(req.body.toString())
 
-    res.send('LOGGED')
+    console.log(requestString)
+    res.send(requestString)
+
     next()
 })
 
-function logFields(obj) {
+function getFields(obj) {
+    var result = ''
     for (var key in obj) {
         if (!obj.hasOwnProperty(key))
             continue
-        console.log(key + ": " + obj[key])
+        result += key + ": " + obj[key] + os.EOL
     }
+    return result
 }
 
-
 app.listen(port, function () {
-    console.log('Httpraw-js app listening on port', port, '!');
+    console.log('Httpraw-js listening on port', port, '!');
 });
