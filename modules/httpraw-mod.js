@@ -18,9 +18,8 @@ module.exports = function (req, callback, done) {
 }
 
 function readFields(obj, callback) {
-    for (var key in obj) {
-        if (!obj.hasOwnProperty(key))
-            continue
-        callback(key + ": " + obj[key])
-    }
+    Object.keys(obj).forEach(function (key) {
+        if (obj.hasOwnProperty(key))
+            callback(key + ": " + obj[key])
+    })
 }
