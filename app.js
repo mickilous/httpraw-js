@@ -3,9 +3,10 @@ var bodyParser = require('body-parser')
 
 var app = express();
 
-app.use(bodyParser.raw());
+app.use(bodyParser.raw({ type: '*/*' }))
 
 app.use(function (req, res, next) {
+
     console.log('------------------')
     console.log(req.method + ' ' + req.url + ' HTTP/' + req.httpVersion)
 
@@ -16,6 +17,9 @@ app.use(function (req, res, next) {
     logFields(req.query)
 
     console.log('--- Content ---')
+    console.log(req.body.toString())
+
+    res.send('LOGGED')
     next()
 })
 
